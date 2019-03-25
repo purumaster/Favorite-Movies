@@ -24,9 +24,10 @@ namespace Favorit_movies
             Console.WriteLine("Enter q to quit: ");
             var title = "";
 
-            while (true)
+            bool keepRunning = true;
+            while (keepRunning)
             {
-                Console.WriteLine("To search - enter 1, to add your favorite movie - enter 2 ");
+                Console.WriteLine("To search - enter 1, to add your favorite movie - enter 2, to comment movie - enter 3 ");
                 var result = Console.ReadLine();
                 int option = 0;
                 try
@@ -37,11 +38,21 @@ namespace Favorit_movies
                 {
                     Console.WriteLine("You didn't enter a number");
                 }
-                if (option == 1)
+                if (option == 1)  //Search
                 {
                     Console.WriteLine("Search movies: ");
-                }
-                if (option == 2)
+                    string search = Console.ReadLine();
+                    foreach (var movie in movies)
+                    {
+                        if (movie.Title.ToLower().Contains(search.ToLower()))
+                        {
+                            Console.WriteLine("Choice the title"+movie.Title);
+                            break;
+                        }
+
+                    }
+                    }
+                if (option == 2) // Enter favorit movie
                 {
                     Console.WriteLine("Enter the title: ");
                     title = Console.ReadLine();
@@ -60,6 +71,24 @@ namespace Favorit_movies
 
                     movies.Add(newMovie);
                 }
+
+                if (option == 3)  //Commnent
+                {
+                    Console.WriteLine("Comment movies: ");
+                    string search = Console.ReadLine();
+                    foreach (var movie in movies)
+                    {
+                        if (movie.Title.ToLower().Contains(search.ToLower()))
+                        {
+                            Console.WriteLine("Comment movie" + movie.Title);
+                            string comment = Console.ReadLine();
+                            movie.Comment = comment;
+                            keepRunning = false;
+                            break;
+                        }
+
+                    }
+                }
             }
 
             foreach (var movie in movies)
@@ -68,7 +97,7 @@ namespace Favorit_movies
             }
         }
 
-        private static void TryParse(int v, out int option)
+        public static void TryParse(int v, out int option)
         {
             throw new NotImplementedException();
         }

@@ -16,9 +16,11 @@ namespace Favorit_movies
     {
         public string Title { get; set; }
         public string Year { get; set; }
-        public string Actor { get; set; }
+        public string Actor{ get; set; }
+        public string Comment { get; set; }   
     }
 
+   
 
 
 
