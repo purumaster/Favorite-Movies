@@ -15,13 +15,11 @@ namespace Favorit_movies
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             DirectoryInfo directory = new DirectoryInfo(currentDirectory);
-       //     var fileName = Path.Combine(directory.FullName, "MyProject.csv");  //My csv file name
-       //     var fileContents = ReadMyProject(fileName);
+       
             var fileName = Path.Combine(directory.FullName, "FavoritMovie.json");  //My Json file name
             var movies = DeserializeMovies(fileName);
 
-            //Enter favorite movie
-         //   Console.WriteLine("Enter q to quit: ");
+           
             var title = "";
 
             bool keepRunning = true;
@@ -83,7 +81,7 @@ namespace Favorit_movies
                 {
                     Console.WriteLine("Comment movies: Enter movie name ");
                     string search = Console.ReadLine();
-                    bool found = false;
+                    //bool found = false;
                     foreach (var movie in movies)
                     {
                         if (movie.Title.ToLower().Contains(search.ToLower()))
@@ -96,10 +94,10 @@ namespace Favorit_movies
                         }
 
                     }
-                    if (found == false)
-                    {
-                        Console.WriteLine("Movie not found");
-                    }
+                   // if (found == false)
+                   // {
+                    //    Console.WriteLine("Movie not found");
+                    //}
 
                 }
                 
