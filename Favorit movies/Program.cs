@@ -21,13 +21,13 @@ namespace Favorit_movies
             var movies = DeserializeMovies(fileName);
 
             //Enter favorite movie
-            Console.WriteLine("Enter q to quit: ");
+         //   Console.WriteLine("Enter q to quit: ");
             var title = "";
 
             bool keepRunning = true;
             while (keepRunning)
             {
-                Console.WriteLine("To search - enter 1, to add your favorite movie - enter 2, to comment movie - enter 3 ");
+                Console.WriteLine("To search - enter 1, to add your favorite movie - enter 2, to comment movie - enter 3, to exit - enter 4 ");
                 var result = Console.ReadLine();
                 int option = 0;
                 try
@@ -40,29 +40,33 @@ namespace Favorit_movies
                 }
                 if (option == 1)  //Search
                 {
-                    Console.WriteLine("Search movies: ");
+                    Console.WriteLine("Search movies: Enter title ");
                     string search = Console.ReadLine();
+                    bool found = false;
                     foreach (var movie in movies)
                     {
                         if (movie.Title.ToLower().Contains(search.ToLower()))
                         {
-                            Console.WriteLine("Choice the title"+movie.Title);
+                            found = true;
+                            Console.WriteLine("Movie found:");
+                            movie.PrintMovie();
                             break;
                         }
 
+                    }
+                    if (found == false)
+                    {
+                        Console.WriteLine("Movie not found");
                     }
                     }
                 if (option == 2) // Enter favorit movie
                 {
                     Console.WriteLine("Enter the title: ");
                     title = Console.ReadLine();
-                    if (title == "q")
-                    {
-                        break;  // Stop looping
-                    }
-                    Console.WriteLine();
+                   
+                    Console.WriteLine("Enter year");
                     var year = Console.ReadLine();
-                    Console.WriteLine();
+                    Console.WriteLine("Enter actor");
                     var actor = Console.ReadLine();
                     var newMovie = new Movie();
                     newMovie.Title = title;
@@ -70,25 +74,40 @@ namespace Favorit_movies
                     newMovie.Actor = actor;
 
                     movies.Add(newMovie);
+
+                    SerializeMoviesToFile(movies, fileName);
+
                 }
 
                 if (option == 3)  //Commnent
                 {
-                    Console.WriteLine("Comment movies: ");
+                    Console.WriteLine("Comment movies: Enter movie name ");
                     string search = Console.ReadLine();
+                    bool found = false;
                     foreach (var movie in movies)
                     {
                         if (movie.Title.ToLower().Contains(search.ToLower()))
                         {
-                            Console.WriteLine("Comment movie" + movie.Title);
                             string comment = Console.ReadLine();
                             movie.Comment = comment;
-                            keepRunning = false;
+                            SerializeMoviesToFile(movies, fileName);
+                            Console.WriteLine("Comment was added");
                             break;
                         }
 
                     }
+                    if (found == false)
+                    {
+                        Console.WriteLine("Movie not found");
+                    }
+
                 }
+                
+                if (option == 4)  //Exit
+                {
+                    break; 
+                }
+
             }
 
             foreach (var movie in movies)

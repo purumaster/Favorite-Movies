@@ -18,6 +18,15 @@ namespace Favorit_movies
         public string Year { get; set; }
         public string Actor{ get; set; }
         public string Comment { get; set; }   
+
+        public void PrintMovie()
+        {
+            Console.WriteLine("Title: " + Title);
+            Console.WriteLine("Year: " + Year);
+            Console.WriteLine("Actor: " + Actor);
+            Console.WriteLine("Comment: " + Comment);
+
+        }
     }
 
    
