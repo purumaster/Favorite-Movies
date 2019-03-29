@@ -12,6 +12,7 @@ Below you will find some information on how to perform common tasks.
 
 
 ## Demo
+　　When you enter, add, and comment, please follow the directions.
    1. Search - enter 1, 
    2. Tadd your favorite movie - enter 2, 
    3. Comment movie - enter 3, 
